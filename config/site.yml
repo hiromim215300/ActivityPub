@@ -1,0 +1,33 @@
+---
+default: &default
+  # Configuration for links in generated partials and emails
+  host: localhost
+  scheme: http
+  port: 3000
+
+  # Secondary list of allowed hosts for which to respond. This should at least
+  # contain the primary host. Empty list will default to localhost and 0.0.0.0
+  hosts: []
+
+  # Email address used as sender when sending emails
+  emails_from: 'admin@localhost'
+
+  # Whether or not to interact with distant servers in secure mode
+  # (e.g.: webfinger calls). Should be true for productions and tests to contact
+  # the outside world; may be set to false during dev to contact other dev servers
+  https_interactions: false
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  port: 80
+  https_interactions: true
+
+production:
+  <<: *default
+  https_interactions: true
+  scheme: https
+  port: 443
+

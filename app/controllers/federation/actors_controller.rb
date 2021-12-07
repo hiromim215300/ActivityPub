@@ -8,6 +8,7 @@ module Federation
     def set_federation_actor
       @actor = Actor.find(params[:id])
       authorize @actor
+      puts("set_federation_actor")
     end
   end
 end

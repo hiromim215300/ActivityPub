@@ -17,7 +17,13 @@ class NotesController < ApplicationController
   def create
     @note       = Note.new(note_params)
     @note.actor = current_user.actor
-
+#    data = ApplicationController.renderer.new.render(
+#      template: 'federation/notes/show',
+#      locals: { :@note => @note },
+#      format:   :json
+#    )
+#    puts(@note)
+#    apipost(data)
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
@@ -54,6 +60,26 @@ class NotesController < ApplicationController
   def set_note
     @note = Note.find(params[:id])
     authorize @note
+#    puts("marking1")
+#    uri = URI.parse("https://192.168.2.101:3000/actors/1/inbox")
+#    http = Net::HTTP.new(uri.host, uri.port)
+#    http.use_ssl = false
+#    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+#    data = ApplicationController.renderer.new.render(
+#      template: 'federation/notes/show',
+#      locals: { :@note => @note },
+#      format:   :json
+#    )
+#    apipost(data) 
+#    puts(res)
+#    puts("marking2")
+#    http.start do
+#      req = Net::HTTP::post_form(uri, res)
+#      req.post_form(uri, res)
+#      http.request(req)
+#    end
+#    apipost(data)
+#    puts("マーキング")
   end
 
   def note_params

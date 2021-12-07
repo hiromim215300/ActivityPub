@@ -15,6 +15,7 @@ module Federation
 
     def create
       payload = payload_from_params
+      puts("payload = ", #{payload})
       return render json: {}, status: :unprocessable_entity unless payload
 
       if Fediverse::Inbox.dispatch_request(payload)
@@ -27,7 +28,7 @@ module Federation
     private
 
     def set_federation_activity
-      @activity = Activity.find_by!(actor_id: params[:actor_id], id: params[:id])
+      @activity = Activity.find_by!(actor_id: params[:actor_id].to_i, id: params[:id].to_i)
     end
 
     def activity_params
@@ -43,7 +44,7 @@ module Federation
       rescue JSON::ParserError
         return
       end
-
+      puts(payload)
       hash = JSON::LD::API.compact payload, payload['@context']
       validate_payload hash
     end
