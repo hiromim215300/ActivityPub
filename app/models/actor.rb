@@ -34,7 +34,7 @@ class Actor < ApplicationRecord
     #url = local? ? federation_actor_url(self) : attributes['federated_url'].presence
     first = Utils::Host.localhost
     second = self.user_id
-    self.federated_url = "https://#{first}:3000/actors/#{second}"
+    self.federated_url = "http://#{first}:3000/actors/#{second}"
   end
 
   def c_username
@@ -56,14 +56,14 @@ class Actor < ApplicationRecord
     #inbox_url = local? ? federation_actor_inbox_url(self) : attributes['inbox_url']
     first = Utils::Host.localhost
     second = self.user_id
-    self.inbox_url = "http://#{first}:3000/actors/#{second}/inbox"
+    self.inbox_url = "http://#{first}:3000/federation/actors/#{second}/inbox"
   end
 
   def c_outbox_url
     #local? ? federation_actor_outbox_url(self) : attributes['inbox_url']
     first = Utils::Host.localhost
     second = self.user_id
-    self.outbox_url = "http://#{first}:3000/actors/#{second}/outbox"
+    self.outbox_url = "http://#{first}:3000/federation/actors/#{second}/outbox"
   end
 
   def at_address

@@ -1,5 +1,7 @@
 {
   "name": "ActivityPub",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "noble": "^1.9.1"
+  }
 }

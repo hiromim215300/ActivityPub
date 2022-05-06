@@ -16,7 +16,7 @@ module Federation
     def create
       payload = payload_from_params
       puts("payload = ", #{payload})
-      return render json: {}, status: :unprocessable_entity unless payload
+      return render json: {}, status: :unprocessable_entity
 
       if Fediverse::Inbox.dispatch_request(payload)
         render json: {}, status: :created
