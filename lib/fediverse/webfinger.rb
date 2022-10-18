@@ -1,3 +1,4 @@
+
 require 'utils/host'
 
 module Fediverse
@@ -37,17 +38,18 @@ module Fediverse
       private
 
       def webfinger_to_actor(data) # rubocop:disable Metrics/AbcSize
-        uri    = URI.parse data['id']
-        server = uri.host
-        server += ":#{uri.port}" if uri.port && ![80, 443].include?(uri.port)
-        ::Actor.new federated_url:  data['id'],
-                    username:       data['preferredUsername'],
+        uri    = data
+        puts("確認用uri = #{uri}")
+        server = "192.168.2.100"
+#        server += ":#{uri.port}" if uri.port && ![80, 443].include?(uri.port)
+        ::Actor.new federated_url:  data['federated_url'],
+                    username:       data['username'],
                     name:           data['name'],
                     server:         server,
-                    inbox_url:      data['inbox'],
-                    outbox_url:     data['outbox']
-                  #  followers_url:  data['followers'],
-                  #  followings_url: data['following'],
+                    inbox_url:      data['inbox_url'],
+                    outbox_url:     data['outbox_url'],
+                    followers_url:  data['followers_url'],
+                    followings_url: data['following_url']
                   #  profile_url:    data['url']
       end
 

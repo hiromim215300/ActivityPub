@@ -42,7 +42,7 @@ class Note < ApplicationRecord
     #url = local? ? federation_actor_url(self) : attributes['federated_url'].presence
     first = Utils::Host.localhost
     second = self.actor_id
-    self.federated_url = "http://#{first}:3000/federation/actors/#{second}/notes/5.json"
+    self.federated_url = "http://192.168.2.100:3000/federation/actors/1/notes/1.json"
   end
 
   private
@@ -75,7 +75,7 @@ class Note < ApplicationRecord
 
   end
 
-  def post_to_inboxes
-    NotifyInboxJob.perform_later(self)
-  end
+#  def post_to_inboxes
+#    NotifyInboxJob.perform_later(self)
+#  end
 end
