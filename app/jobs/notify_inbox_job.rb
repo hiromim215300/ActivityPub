@@ -33,7 +33,8 @@ class NotifyInboxJob < ApplicationJob
     activity.reload
     Fediverse::Notifier.post_to_inboxes(activity)
 
-    uri = URI.parse("http://192.168.2.103:3000/federation/actors/1/inbox")
+#    uri = URI.parse("http://192.168.2.101:3000/federation/actors/1/inbox")
+    uri = URI.parse("http://43.206.44.205:3000/federation/actors/1/inbox") 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = false
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -53,18 +54,19 @@ class NotifyInboxJob < ApplicationJob
     )
 #    var.push(data)
 #    var.push(data2)
-    num = 0
-    while num <= 8
-      data << "|"
-      data << data2
-      num += 1
-    end
+#    num = 1
+#    while num <= 1
+#      data << "|"
+#      data << data2
+#      num += 1
+#    end
 #    data << "|"
  #   data << data2
     puts(data)
     puts(data.class)
     start_time = Time.now
-    Faraday.post("http://192.168.2.103:3000/federation/actors/1/inbox", data)
+#    Faraday.post("http://192.168.2.101:3000/federation/actors/1/inbox", data)
+    Faraday.post("http://43.206.44.205:3000/federation/actors/1/inbox", data)
     puts("処理時間: #{Time.now - start_time}")
 #    Faraday.post "http://192.168.2.103:3000/federation/actors/1/inbox", data, 'Content-Type' => 'application/json', 'Accept' => 'application/json'
 #    apipost(data)

@@ -12,12 +12,14 @@ module Fediverse
           format:   :json
         )
         puts("Test")
-        Faraday.post "http://192.168.2.106:3000/federation/actors/1/inbox", message, 'Content-Type' => 'application/json', 'Accept' => 'application/json'
+        Faraday.post "http://192.168.2.101:3000/federation/actors/1/inbox", message, 'Content-Type' => 'application/json', 'Accept' => 'application/json'
         actors.each do |actor|
-          actor.inbox_url = 'http://192.168.2.106:3000/federation/actors/1/inbox'
+#          actor.inbox_url = 'http://192.168.2.101:3000/federation/actors/1/inbox'
+          actor.inbox_url = 'http://43.206.44.205:3000/federation/actors/1/inbox'
           Rails.logger.debug "Sending activity ##{activity.id} to #{actor.inbox_url}"
           Faraday.post actor.inbox_url, message, 'Content-Type' => 'application/json', 'Accept' => 'application/json'
-          uri = URI.parse("http://192.168.2.106:3000/federation/actors/1/inbox")
+#          uri = URI.parse("http://192.168.2.101:3000/federation/actors/1/inbox")
+          uri = URI.parse("http://43.206.44.205:3000/federation/actors/1/inbox")
           http = Net::HTTP.new(uri.host, uri.port)
           http.use_ssl = false
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
