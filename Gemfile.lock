@@ -161,6 +161,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.4.4)
+    psych (3.3.4)
     public_suffix (4.0.6)
     puma (3.12.6)
     pundit (2.1.1)
@@ -275,6 +276,7 @@ DEPENDENCIES
   kaminari
   listen (>= 3.0.5, < 3.2)
   pg
+  psych (~> 3.1)
   puma (~> 3.7)
   pundit
   rails (~> 5.1.6)
